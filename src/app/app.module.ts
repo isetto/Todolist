@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { ListComponent } from './home/list/list.component';
 import { CardComponent } from './home/card/card.component';
+import { AppRoutingModule } from './app-routing.module';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { CardComponent } from './home/card/card.component';
     CardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
