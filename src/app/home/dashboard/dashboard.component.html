@@ -10,8 +10,7 @@
   <div class="board">
 
     <div class="board-bar">
-      <p class="board-name">{{ board.name }}</p>
-      <p class="board-name">asdfg</p>
+      <p class="board-name">My Board</p>
     </div>
 
     <div class="board-wrapper">
@@ -21,15 +20,34 @@
 
           <div class="column-title">
             {{ column.name }}
+            <button *ngIf="column.name === 'Todo'" (click)="addCard()">dodaj</button>
           </div>
 
           <div class="tasks-container"
                cdkDropList
                #todoList = "cdkDropList"
                [cdkDropListData]="column.tasks"
-               (cdkDropListDropped)="drop($event)">
-            <div class="task" *ngFor="let item of column.tasks" cdkDrag>
-              {{ item }}
+               (cdkDropListDropped)="drop($event)"
+               >
+            <div class="task"  *ngFor="let item of column.tasks; let i = index" cdkDrag>
+                <div *ngIf="item.editable">
+                  <textarea rows="6" cols="33" [(ngModel)]="item.task"></textarea>
+                </div>
+                <div *ngIf="!item.editable">
+                  {{ item.task }}
+                </div>
+                <div >
+                  <button (click)="deleteCard(column.name, i)">usuń</button>
+
+                  <div *ngIf="item.editable">
+                    <button (click)="saveCard(column.name,i)">zapisz</button>
+                  </div>
+                  <div *ngIf="!item.editable">
+                    <button (click)="editCard(column.name,i)">edytuj</button>
+                  </div>
+                </div>
+
+
             </div>
           </div>
         </div>

@@ -1,3 +1,11 @@
+import {Task} from "./task.mode";
+
 export class Column {
-  constructor(public name: string, public tasks: string[]) {}
+  name:string;
+  tasks: Task[];
+
+  constructor(name: string, tasks: Task[]) {
+    this.name = name;
+    this.tasks = tasks;
+  }
 }
