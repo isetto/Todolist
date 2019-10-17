@@ -1,0 +1,15 @@
+
+.online {
+  background-color: green;
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+  height: 100%;
+}
+.offline {
+  background-color: red;
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+  height: 100%;
+}

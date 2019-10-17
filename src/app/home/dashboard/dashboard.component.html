@@ -1,29 +1,27 @@
 <div class="root">
-  <div class="navbar has-background-dark">
-    <div class="navbar-brand">
-      <div class="navbar-item">
-        <h1 class="app-name has-gradient-text">kanban</h1>
-      </div>
-    </div>
-  </div>
+
 
   <div class="board">
-
     <div class="board-bar">
-      <p class="board-name">My Board</p>
+      <p class="board-name">My_Board</p>
     </div>
-
+    <block-ui>
+      <app-online-status
+        [onlineStatusMessage]="connectionStatusMessage"
+        [onlineStatus]="connectionStatus">
+      </app-online-status>
     <div class="board-wrapper">
 
       <div class="board-columns" cdkDropListGroup>
+
         <div class="board-column" *ngFor="let column of board.columns">
 
           <div class="column-title">
             {{ column.name }}
-            <button *ngIf="column.name === 'Todo'" (click)="addCard()">dodaj</button>
+            <button *ngIf="column.name === 'Todo'" (click)="initialAddCard()">add</button>
           </div>
-
-          <div class="tasks-container"
+          <div
+            class="tasks-container"
                cdkDropList
                #todoList = "cdkDropList"
                [cdkDropListData]="column.tasks"
@@ -37,13 +35,13 @@
                   {{ item.task }}
                 </div>
                 <div >
-                  <button (click)="deleteCard(column.name, i)">usuń</button>
+                  <button style="margin-bottom: 10px" (click)="deleteCard(column.name, i)">delete</button>
 
                   <div *ngIf="item.editable">
-                    <button (click)="saveCard(column.name,i)">zapisz</button>
+                    <button (click)="saveCard(column.name, i)">save</button>
                   </div>
                   <div *ngIf="!item.editable">
-                    <button (click)="editCard(column.name,i)">edytuj</button>
+                    <button (click)="editCard(column.name,i)">edit</button>
                   </div>
                 </div>
 
@@ -55,6 +53,7 @@
       </div>
 
     </div>
+    </block-ui>
 
   </div>
 
